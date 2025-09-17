@@ -77,7 +77,8 @@
     "beautiful": "lint-staged",
     "start": "nodemon --inspect src/index.js",
     "watch": "sass --watch --no-source-map src/resources/scss:src/public/css",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -93,7 +94,7 @@
   },
   "homepage": "https://github.com/nguyenductuyen745/NodeJS_Init#readme",
   "devDependencies": {
-    "husky": "^9.1.7",
+    "husky": "^8.0.0",
     "lint-staged": "^16.1.6",
     "morgan": "^1.10.1",
     "prettier": "^3.6.2"
