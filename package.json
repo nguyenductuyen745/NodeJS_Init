@@ -86,11 +86,6 @@
   "lint-staged": {
     "src/**/*.{js,json,scss}": "prettier --write"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "author": "",
   "license": "ISC",
   "bugs": {
