@@ -74,6 +74,7 @@
     "wrappy": "^1.0.2"
   },
   "scripts": {
+    "beautiful": "lint-staged",
     "start": "nodemon --inspect src/index.js",
     "watch": "sass --watch --no-source-map src/resources/scss:src/public/css",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -82,6 +83,14 @@
     "type": "git",
     "url": "git+https://github.com/nguyenductuyen745/NodeJS_Init.git"
   },
+  "lint-staged": {
+    "src/**/*.{js,json,scss}": "prettier --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -89,6 +98,9 @@
   },
   "homepage": "https://github.com/nguyenductuyen745/NodeJS_Init#readme",
   "devDependencies": {
-    "morgan": "^1.10.1"
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.6",
+    "morgan": "^1.10.1",
+    "prettier": "^3.6.2"
   }
 }
