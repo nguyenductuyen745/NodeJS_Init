@@ -27,6 +27,11 @@ app.engine(
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 
+// Middleware để parse dữ liệu từ form (application/x-www-form-urlencoded)
+app.use(express.urlencoded({ extended: true }));
+// Middleware để parse JSON (application/json)
+app.use(express.json());
+
 // Route init
 route(app);
 
