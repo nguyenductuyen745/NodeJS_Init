@@ -1,4 +1,10 @@
 @import 'variables';
 
 .app {
+  .course-select-action-wrap {
+    .form-select {
+      width: 200px;
+      margin: 0 16px;
+    }
+  }
 }
