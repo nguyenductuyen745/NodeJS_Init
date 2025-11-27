@@ -7,6 +7,8 @@ const { engine } = require('express-handlebars');
 const app = express();
 const port = 3000;
 
+const SortMiddleware = require('./app/middlewares/SortMiddleware');
+
 const route = require('./routes');
 const db = require('./config/db');
 
@@ -20,6 +22,9 @@ app.use(methodOverride('_method'));
 app.use(morgan('combined'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Custom Middleware
+app.use(SortMiddleware);
+
 // Templates engine
 app.engine(
   'hbs',
@@ -27,6 +32,26 @@ app.engine(
     extname: 'hbs',
     helpers: {
       sum: (a, b) => a + b,
+      sortable: (field, sort) => {
+        const icons = {
+          default: 'bi bi-funnel-fill',
+          asc: 'bi bi-sort-down-alt',
+          desc: 'bi bi-sort-down',
+        };
+        const types = {
+          default: 'desc',
+          asc: 'desc',
+          desc: 'asc',
+        };
+
+        const sortType = field === sort.column ? sort.type : 'default';
+        const icon = icons[sortType];
+        const newType = types[sortType];
+
+        return `
+          <a href='?_sort&column=${field}&type=${newType}'><i class="${icon}"></i></a>
+        `;
+      },
     },
   }),
 );

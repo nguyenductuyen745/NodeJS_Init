@@ -41,9 +41,11 @@
       <tr>
         <th scope='col'></th>
         <th scope='col'>#</th>
-        <th scope='col'>Ten khoa hoc</th>
-        <th scope='col'>Trinh do</th>
-        <th scope='col' colspan='2'>Thoi gian tao</th>
+        <th scope='col'>Ten khoa hoc
+          {{{sortable 'name' _sort}}}
+        </th>
+        <th scope='col'>Trinh do {{{sortable 'level' _sort}}}</th>
+        <th scope='col' colspan='2'>Thoi gian tao {{{sortable 'createdAt' _sort}}}</th>
       </tr>
     </thead>
     <tbody>
