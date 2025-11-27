@@ -1,8 +1,10 @@
 const path = require('path');
+const dayjs = require('dayjs');
 const express = require('express');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 const { engine } = require('express-handlebars');
+const { DATE_FORMAT } = require('./constants');
 
 const app = express();
 const port = 3000;
@@ -51,6 +53,9 @@ app.engine(
         return `
           <a href='?_sort&column=${field}&type=${newType}'><i class="${icon}"></i></a>
         `;
+      },
+      dateFormater: (date) => {
+        return dayjs(date).format(DATE_FORMAT);
       },
     },
   }),
