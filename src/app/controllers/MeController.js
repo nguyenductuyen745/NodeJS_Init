@@ -5,22 +5,15 @@ class MeController {
   // [GET] /me/stored/courses
   async storedCourse(req, res, next) {
     try {
-      let courseQuery = Course.find({});
-
-      if (res.locals._sort.enabled) {
-        courseQuery.sort({
-          [res.locals._sort.column]: res.locals._sort.type,
+      Promise.all([
+        Course.find({}).sortable(req),
+        Course.countDocumentsDeleted(),
+      ]).then(([courses, deletedCount]) => {
+        res.render('me/stored-courses', {
+          deletedCount,
+          courses: mongooseToOject(courses),
         });
-      }
-
-      Promise.all([courseQuery, Course.countDocumentsDeleted()]).then(
-        ([courses, deletedCount]) => {
-          res.render('me/stored-courses', {
-            deletedCount,
-            courses: mongooseToOject(courses),
-          });
-        },
-      );
+      });
     } catch (error) {
       next(error);
     }
